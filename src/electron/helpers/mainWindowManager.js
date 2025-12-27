@@ -62,7 +62,7 @@ export class MainWindowManager {
     }
 
     this.mainWindow.webContents.on("did-finish-load", onReady);
-    // this.mainWindow.webContents.openDevTools({ mode: "detach" });
+    this.mainWindow.webContents.openDevTools({ mode: "detach" });
   }
 
   getWindow() {

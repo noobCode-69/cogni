@@ -13,6 +13,7 @@ import { useAbortController } from "../../hooks/useAbortController";
 import { electronAPI } from "../../utils";
 import { useAPIKey } from "../../hooks/useApiKey";
 import { resetConversation } from "../../atoms/conversationHistoryAtom";
+import { useImageToggle } from "../../hooks/useImageToggle";
 
 const getNextStep = (currentStep) => {
   switch (currentStep) {
@@ -34,6 +35,7 @@ const Chat = () => {
   const [coords, setCoords] = useState({ top: 0 });
   const { setAnswer, setIsLoading, setError, setLastQuery } = useAnswer();
   const { createNewController, reset, abort } = useAbortController();
+  const { isImageToggle } = useImageToggle();
   const { apiKey } = useAPIKey();
 
   useEffect(() => {
@@ -117,6 +119,7 @@ const Chat = () => {
         setError(error);
         reset();
       },
+      useImage: isImageToggle,
     });
   };
 

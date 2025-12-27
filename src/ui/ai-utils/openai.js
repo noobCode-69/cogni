@@ -19,9 +19,14 @@ export async function openaiChatStream({
   onError,
   signal,
   apiKey,
+  useImage,
 }) {
   try {
-    const image = await takeScreenshot();
+    let image = null;
+
+    if (useImage) {
+      image = await takeScreenshot();
+    }
 
     addUserMessage(userMessage, image);
 
@@ -59,6 +64,6 @@ export async function openaiChatStream({
 
     return fullStream;
   } catch (err) {
-    onError?.(err.message || "Unexpected error occurred.");
+    onError?.(err?.message || "Unexpected error occurred.");
   }
 }
