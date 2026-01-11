@@ -68,7 +68,7 @@ const Chat = () => {
   };
 
   const makeQuery = async (query) => {
-    if (query === "reset") {
+    if (query && query.toLowerCase() === "reset") {
       abort();
       reset();
       setAnswer("");

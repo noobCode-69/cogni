@@ -106,5 +106,9 @@ export class AppManager {
       }
       return true;
     });
+
+    ipcMain.handle(EVENT_CONSTANTS.GET_STT_API_KEY, () => {
+      return process.env.STT_API_KEY;
+    });
   }
 }

@@ -16,6 +16,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
   takeScreenshot: () => ipcRenderer.invoke(EVENT_CONSTANTS.TAKE_SCREENSHOT),
   saveApiKey: (key) => ipcRenderer.invoke(EVENT_CONSTANTS.SAVE_API_KEY, key),
   loadApiKey: () => ipcRenderer.invoke(EVENT_CONSTANTS.LOAD_API_KEY),
+  getSttApiKey: () => ipcRenderer.invoke(EVENT_CONSTANTS.GET_STT_API_KEY),
   checkScreenPermission: () =>
     ipcRenderer.invoke(EVENT_CONSTANTS.CHECK_SCREEN_PERMISSION),
 });

@@ -5,6 +5,7 @@ import { useTrayPosition } from "../hooks/useTrayPosition";
 import Hide from "./Hide";
 import API from "./API";
 import ImageToggle from "./ImageToggle";
+import Audio from "./Audio";
 
 const Tray = () => {
   const { trayPosition, setTrayPosition } = useTrayPosition();
@@ -20,6 +21,7 @@ const Tray = () => {
   return (
     <FixedCenteredContainer>
       <API />
+      <Audio />
       <ImageToggle />
       <Chat />
       <Hide />
