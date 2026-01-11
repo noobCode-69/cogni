@@ -44,10 +44,8 @@ export class MainWindowManager {
         blurred: true,
       });
     });
+    this.mainWindow.setContentProtection(true);
     this.mainWindow.setMenu(null);
-    // this.mainWindow.setContentProtection(false);
-    // const menu = Menu.buildFromTemplate(template);
-    Menu.setApplicationMenu(menu);
     this.mainWindow.webContents.on("before-input-event", (event, input) => {
       if (input.key.toLowerCase() === "w" && input.meta) {
         event.preventDefault();
