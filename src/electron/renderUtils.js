@@ -69,10 +69,5 @@ export const keyboardShortcuts = [
     sendToRenderer: true,
     dynamic: true,
   },
-  {
-    accelerator: "Command+S",
-    action: "CMD_S",
-    sendToRenderer: true,
-    dynamic: true,
-  },
+
 ];
