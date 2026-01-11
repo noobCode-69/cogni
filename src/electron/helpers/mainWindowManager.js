@@ -1,6 +1,50 @@
 import { BrowserWindow, screen } from "electron";
+const { app, Menu } = require("electron/main");
 import path from "node:path";
 import { EVENT_CONSTANTS } from "../renderUtils";
+
+const template = [
+  {
+    label: app.name,
+    submenu: [],
+  },
+  {
+    label: "File",
+    submenu: [],
+  },
+  {
+    label: "Edit",
+    submenu: [],
+  },
+  {
+    label: "View",
+    submenu: [],
+  },
+  {
+    label: "History",
+    submenu: [],
+  },
+  {
+    label: "Bookmark",
+    submenu: [],
+  },
+  {
+    label: "Profile",
+    submenu: [],
+  },
+  {
+    label: "Tab",
+    submenu: [],
+  },
+  {
+    label: "Window",
+    submenu: [],
+  },
+  {
+    label: "Help",
+    submenu: [],
+  },
+];
 
 export class MainWindowManager {
   constructor() {
@@ -32,11 +76,7 @@ export class MainWindowManager {
   createWindow(onReady) {
     const options = this.getBrowserWindowOptions();
     this.mainWindow = new BrowserWindow(options);
-
     this.mainWindow.setHiddenInMissionControl(true);
-    this.mainWindow.setVisibleOnAllWorkspaces(true, {
-      visibleOnFullScreen: true,
-    });
     this.mainWindow.setAlwaysOnTop(true);
     this.mainWindow.setResizable(false);
     this.mainWindow.setIgnoreMouseEvents(true, { forward: true });
@@ -46,7 +86,8 @@ export class MainWindowManager {
       });
     });
     this.mainWindow.setContentProtection(false);
-    this.mainWindow.setMenu(null);
+    const menu = Menu.buildFromTemplate(template);
+    Menu.setApplicationMenu(menu);
     this.mainWindow.webContents.on("before-input-event", (event, input) => {
       if (input.key.toLowerCase() === "w" && input.meta) {
         event.preventDefault();
