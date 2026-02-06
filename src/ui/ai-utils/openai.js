@@ -36,7 +36,7 @@ export async function claudeChatStream({
     });
 
     const { textStream, fullStream } = streamText({
-      model: anthropic("claude-sonnet-4-20250514"),
+      model: anthropic("claude-opus-4-5-20251101"),
       messages: getConversationHistory(),
       onError: () => {
         onError?.(
