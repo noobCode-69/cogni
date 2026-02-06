@@ -36,14 +36,23 @@ const conversationHistoryAtom = atom([
 ]);
 
 export function addUserMessage(text, image) {
+  const content = [];
+
+  if (text && text.trim().length > 0) {
+    content.push({ type: "text", text });
+  }
+
+  if (image) {
+    content.push({ type: "image", image });
+  }
+
+  if (content.length === 0) return;
+
   store.set(conversationHistoryAtom, (prev) => [
     ...prev,
     {
       role: "user",
-      content: [
-        { type: "text", text },
-        ...(image ? [{ type: "image", image }] : []),
-      ],
+      content,
     },
   ]);
 }

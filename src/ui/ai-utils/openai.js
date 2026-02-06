@@ -1,4 +1,4 @@
-import { createOpenAI } from "@ai-sdk/openai";
+import { createAnthropic } from "@ai-sdk/anthropic";
 import { streamText } from "ai";
 import { electronAPI } from "../utils";
 
@@ -12,7 +12,7 @@ const takeScreenshot = async () => {
   return await electronAPI.takeScreenshot();
 };
 
-export async function openaiChatStream({
+export async function claudeChatStream({
   userMessage,
   onChunk,
   onFinish,
@@ -30,14 +30,17 @@ export async function openaiChatStream({
 
     addUserMessage(userMessage, image);
 
-    const openai = createOpenAI({ apiKey });
+    const anthropic = createAnthropic({
+      apiKey,
+      headers: { "anthropic-dangerous-direct-browser-access": "true" },
+    });
 
     const { textStream, fullStream } = streamText({
-      model: openai("gpt-4-turbo"),
+      model: anthropic("claude-sonnet-4-20250514"),
       messages: getConversationHistory(),
       onError: () => {
         onError?.(
-          "Error fetching data. Please verify your API key is correct and try again."
+          "Error fetching data. Please verify your API key is correct and try again.",
         );
       },
     });

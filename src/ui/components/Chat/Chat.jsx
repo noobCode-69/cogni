@@ -6,7 +6,7 @@ import Button from "../../primitives/Button";
 import { usePopover } from "../../hooks/usePopover";
 import { useChat } from "../../hooks/useChat";
 import { useAnswer } from "../../hooks/useAnswer";
-import { openaiChatStream } from "../../ai-utils/openai";
+import { claudeChatStream } from "../../ai-utils/openai";
 import StepRenderer from "./StepRenderer";
 import { STEPS } from "../../atoms/chatAtom";
 import { useAbortController } from "../../hooks/useAbortController";
@@ -104,7 +104,7 @@ const Chat = () => {
       return;
     }
 
-    openaiChatStream({
+    claudeChatStream({
       apiKey,
       userMessage: query,
       signal: controller.signal,
